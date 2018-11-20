@@ -6,9 +6,9 @@ import {
     // saveQuestionAnswer
 } from './questions';
 
-export function handleGetAllQuestions(questions) {
+export function handleGetAllQuestions() {
     return (dispatch) => {
-        return API.getQuestions(questions)
+        return API.getQuestions()
         .then(res => dispatch(getAllQuestions(res.questions)));
     };
 }

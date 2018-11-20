@@ -3,19 +3,13 @@ import './App.css';
 
 import { connect } from 'react-redux';
 
-import { 
-    handleGetAllQuestions 
-} from './actions/questionsI';
-import {
-    handleSetAuthedUser
-} from './actions/authedUserI'
+import { handleGetAllUsers } from './actions/usersI';
 
 
 class App extends Component {
 
     componentDidMount() {
-        this.props.dispatch(handleGetAllQuestions());
-        this.props.dispatch(handleSetAuthedUser("francesyu90"));
+        this.props.dispatch(handleGetAllUsers());
     }
 
     render() {
