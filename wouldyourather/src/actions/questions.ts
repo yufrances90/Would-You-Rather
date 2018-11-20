@@ -3,7 +3,7 @@ import IQuestion from '../interfaces/questions';
 
 export interface IGetAllQuestions {
     type: QuestionActionTypes.GET_ALL_QUESTIONS,
-    questions: IQuestion[]
+    questions: Map<string, IQuestion>
 }
 
 export interface ISaveQuestion {
@@ -23,7 +23,7 @@ export type QuestionAction =
     ISaveQuestion | 
     ISaveQuestionAnswer;
 
-export function getAllQuestions(questions: IQuestion[]): IGetAllQuestions {
+export function getAllQuestions(questions: Map<string, IQuestion>): IGetAllQuestions {
     return {
         type: QuestionActionTypes.GET_ALL_QUESTIONS,
         questions

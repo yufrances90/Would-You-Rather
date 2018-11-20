@@ -1,9 +1,10 @@
 import { QuestionActionTypes } from '../constants/questions';
 import { QuestionAction } from '../actions/questions';
 import QuestionState from '../types/questionState';
+import IQuestion from '../interfaces/questions';
 
 const initialState: QuestionState = {
-    list: []
+    questions: new Map<string, IQuestion>()
 }
 
 export default function questions(
@@ -13,27 +14,27 @@ export default function questions(
     switch(action.type) {
         case QuestionActionTypes.GET_ALL_QUESTIONS:
             return {
-                list: action.questions
+                questions: action.questions
             };
         case QuestionActionTypes.SAVE_QUESTION:
             return {
-                list: state.list.concat([action.question])
+                questions: {
+                    ...state.questions,
+                    [action.question.id]: action.question
+                }
             };
         case QuestionActionTypes.SAVE_QUESTION_ANSWER:
             return {
-                list: state.list.map(question => {
-                    if (question.id !== action.qid) {
-                        return question;
-                    } else {
-                        return {
-                            ...question,
-                            [action.answer]: {
-                                ...question[action.answer],
-                                votes: question[action.answer].votes.concat([action.authedUser])
-                            }
+                questions: {
+                    ...state.questions,
+                    [action.qid]: {
+                        ...state.questions[action.qid],
+                        [action.answer]: {
+                            ...state.questions[action.qid][action.answer],
+                            votes: state.questions[action.qid][action.answer].votes.concat([action.authedUser])
                         }
                     }
-                })
+                }
             };
         default:
             return state;
