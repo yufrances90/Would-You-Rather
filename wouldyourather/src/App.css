@@ -1,3 +1,7 @@
 .app-navbar {
     background-color: black;
 }
+
+.app-body {
+    padding: 2em;
+}

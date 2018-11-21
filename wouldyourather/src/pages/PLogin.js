@@ -8,6 +8,8 @@ import {
 
 import { handleGetAllUsers } from '../actions/usersI';
 
+import LoginForm from '../components/LoginForm';
+
 class PLogin extends Component {
 
     componentDidMount() {
@@ -29,7 +31,7 @@ class PLogin extends Component {
 
         return (
             <div>
-                Hello from PLogin
+                <LoginForm />
             </div>
         );
     }
