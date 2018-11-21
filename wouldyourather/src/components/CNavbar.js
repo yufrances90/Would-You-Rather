@@ -19,10 +19,19 @@ import PropTypes from 'prop-types';
 
 import { appName } from '../constants/shared.ts';
 
+import { handleSetAuthedUser } from '../actions/authedUserI';
+
 class CNavbar extends Component {
 
     static propTypes = {
         authedUser: PropTypes.string.isRequired
+    }
+
+    handleLogOutButtonClick(event) {
+
+        event.preventDefault();
+
+        this.props.dispatch(handleSetAuthedUser(""));
     }
 
     render() {
@@ -52,7 +61,10 @@ class CNavbar extends Component {
                                         <Typography color="inherit" variant="button">
                                             {authedUser}
                                             <Tooltip title="Log Out">
-                                                <IconButton color="inherit">
+                                                <IconButton 
+                                                    color="inherit" 
+                                                    onClick={this.handleLogOutButtonClick.bind(this)} 
+                                                >
                                                     <AccountCircle />
                                                 </IconButton> 
                                             </Tooltip>
