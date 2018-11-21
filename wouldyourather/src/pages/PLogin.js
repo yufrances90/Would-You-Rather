@@ -6,11 +6,18 @@ import {
     LinearProgress
 } from '@material-ui/core';
 
+import PropTypes from 'prop-types';
+
 import { handleGetAllUsers } from '../actions/usersI';
 
 import LoginForm from '../components/LoginForm';
 
 class PLogin extends Component {
+
+    static propTypes ={
+        dispatch: PropTypes.func.isRequired,
+        users: PropTypes.object.isRequired
+    }
 
     componentDidMount() {
         
@@ -31,7 +38,7 @@ class PLogin extends Component {
 
         return (
             <div>
-                <LoginForm />
+                <LoginForm users={users} />
             </div>
         );
     }
