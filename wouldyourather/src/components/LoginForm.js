@@ -11,8 +11,9 @@ import {
 
 class LoginForm extends Component {
 
-    static propTypes ={
-        users: PropTypes.object.isRequired
+    static propTypes = {
+        users: PropTypes.object.isRequired,
+        handleLoginFormSubmit: PropTypes.func.isRequired
     }
 
     state = {
@@ -30,7 +31,7 @@ class LoginForm extends Component {
 
     render() {
 
-        const { users } = this.props;
+        const { users, handleLoginFormSubmit } = this.props;
 
         const { userID } = this.state;
 
@@ -57,7 +58,11 @@ class LoginForm extends Component {
                             </MenuItem>
                         ))}
                     </TextField>
-                    <Button variant="outlined">
+                    <Button 
+                        variant="outlined"
+                        onClick={event => handleLoginFormSubmit(event, userID)}
+                        disabled={userID === ''} 
+                    >
                         Submit
                     </Button>
                 </form>

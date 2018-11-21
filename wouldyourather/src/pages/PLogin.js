@@ -13,6 +13,7 @@ import {
 } from '@material-ui/core';
 
 import { handleGetAllUsers } from '../actions/usersI';
+import { handleSetAuthedUser } from '../actions/authedUserI';
 
 import LoginForm from '../components/LoginForm';
 
@@ -25,6 +26,13 @@ class PLogin extends Component {
 
     componentDidMount() {
         this.props.dispatch(handleGetAllUsers());
+    }
+
+    handleLoginFormSubmit(event, userId) {
+        
+        event.preventDefault();
+
+        this.props.dispatch(handleSetAuthedUser(userId));
     }
 
     render() {
@@ -41,7 +49,10 @@ class PLogin extends Component {
                     <Grid item xs={5}>
                     </Grid>
                     <Grid item xs={2}>
-                        <LoginForm users={users} />
+                        <LoginForm 
+                            users={users}
+                            handleLoginFormSubmit={this.handleLoginFormSubmit.bind(this)} 
+                        />
                     </Grid>
                     <Grid item xs={5}>
                     </Grid>
