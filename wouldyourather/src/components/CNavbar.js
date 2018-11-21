@@ -34,8 +34,8 @@ class CNavbar extends Component {
         event.preventDefault();
 
         this.props.dispatch(handleSetAuthedUser(""));
-
-        /** TODO: Redirect to Login Page use history */
+        
+        location.href="/login";
     }
 
     render() {
