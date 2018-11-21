@@ -9,13 +9,26 @@ class CTabs extends Component {
         questions: PropTypes.object.isRequired
     }
 
-    render() {
+    getAnsweredAndUnansweredQuestions() {
 
         const { currentUser, questions } = this.props;
 
-        console.log(currentUser);
-        console.log(questions);
-        
+        const answeredQIds = Object.keys(currentUser.answers);
+        const answeredQs = answeredQIds.map(qid => questions[qid]);
+
+        const unansweredQIds = Object.keys(questions).filter(qid => !answeredQIds.includes(qid));
+        const unansweredQs = unansweredQIds.map(qid => questions[qid]);
+
+        return {
+            answeredQs,
+            unansweredQs
+        };
+    }
+
+    render() {
+
+        const { answeredQs, unansweredQs } = this.getAnsweredAndUnansweredQuestions();
+
         return (
             <div>
                 Hello from CTabs

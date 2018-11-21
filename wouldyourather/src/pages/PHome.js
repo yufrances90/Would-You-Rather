@@ -85,7 +85,8 @@ class PHome extends Component {
                         }}
                     >
                         {
-                            currentUser && 
+                            currentUser &&
+                            Object.keys(questions).length !== 0 && 
                             <CTabs 
                                 currentUser={currentUser} 
                                 questions={questions} 
