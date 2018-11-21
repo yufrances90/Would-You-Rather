@@ -4,7 +4,11 @@ import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
 
+import { Grid } from '@material-ui/core';
+
 import { handleGetAllUsers } from '../actions/usersI';
+
+import LTable from '..//components/LTable';
 
 class PLeaderboard extends Component {
 
@@ -44,7 +48,15 @@ class PLeaderboard extends Component {
 
         return (
             <div>
-                Hello from PLeaderboard
+                <Grid container>
+                    <Grid item xs={2}> 
+                    </Grid>
+                    <Grid item xs={8}>
+                        <LTable users={users} />
+                    </Grid>
+                    <Grid item xs={2}>
+                    </Grid>
+                </Grid>
             </div>
         );
     }
@@ -62,13 +74,14 @@ function mapStateToProps({ authedUser, users }) {
             const user = userMap[userId];
 
             return {
-                [userId]: {
-                    userId,
-                    name: user.name,
-                    numQAsked: user.questions.length,
-                    numQAnsed: Object.keys(user.answers).length 
-                }
+                id: userId,
+                url: user.avatarURL,
+                name: user.name,
+                numQAsked: user.questions.length,
+                numQAnsed: Object.keys(user.answers).length 
             }
+        }).sort((a, b) => {
+            return (b.numQAnsed + b.numQAsked) - (a.numQAnsed + a.numQAsked);
         })
     }
 }
