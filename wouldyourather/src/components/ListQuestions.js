@@ -11,6 +11,8 @@ import {
     Link as LinkIcon
 } from '@material-ui/icons';
 
+import { Link } from 'react-router-dom';
+
 class ListQuestions extends Component {
 
     static propTypes = {
@@ -30,7 +32,14 @@ class ListQuestions extends Component {
                                 {question.optionOne.text} | {question.optionTwo.text}
                             </p>
                             <IconButton>
-                                <LinkIcon />
+                                <Link to={{
+                                    pathname: `/questions/${question.id}`,
+                                    state: {
+                                        questionId: question.id
+                                    }
+                                }}>
+                                    <LinkIcon />
+                                </Link>
                             </IconButton>
                         </ListItem>
                     ))}

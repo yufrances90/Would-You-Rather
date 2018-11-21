@@ -7,6 +7,7 @@ import PLogin from './pages/PLogin';
 import CNavbar from './components/CNavbar';
 import PHome from './pages/PHome';
 import PLeaderboard from './pages/PLeaderboard';
+import PQuestion from './pages/PQuestion';
 
 class App extends Component {
 
@@ -19,6 +20,7 @@ class App extends Component {
                         <Route exact path="/" component={PHome} />
                         <Route exact path="/login" component={PLogin} />
                         <Route exact path="/leaderboard" component={PLeaderboard} />
+                        <Route exact path="/questions/:question_id" component={PQuestion} />
                     </div>
                 </div>
             </Router>
