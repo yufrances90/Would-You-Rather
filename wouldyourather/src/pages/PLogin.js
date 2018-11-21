@@ -8,6 +8,10 @@ import {
 
 import PropTypes from 'prop-types';
 
+import {
+    Grid
+} from '@material-ui/core';
+
 import { handleGetAllUsers } from '../actions/usersI';
 
 import LoginForm from '../components/LoginForm';
@@ -20,12 +24,7 @@ class PLogin extends Component {
     }
 
     componentDidMount() {
-        
-        const { users } = this.props;
-
-        if(!users) {
-            this.props.dispatch(handleGetAllUsers());
-        }
+        this.props.dispatch(handleGetAllUsers());
     }
 
     render() {
@@ -38,7 +37,15 @@ class PLogin extends Component {
 
         return (
             <div>
-                <LoginForm users={users} />
+                <Grid container>
+                    <Grid item xs={5}>
+                    </Grid>
+                    <Grid item xs={2}>
+                        <LoginForm users={users} />
+                    </Grid>
+                    <Grid item xs={5}>
+                    </Grid>
+                </Grid>
             </div>
         );
     }
@@ -46,7 +53,7 @@ class PLogin extends Component {
 
 function mapStateToProps({ users }) {
     return {
-        users
+        users: users.users
     };
 }
 
