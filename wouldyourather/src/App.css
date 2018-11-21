@@ -5,3 +5,8 @@
 .app-body {
     padding: 2em;
 }
+
+.app-link {
+    text-decoration: none;
+    color: inherit;
+}

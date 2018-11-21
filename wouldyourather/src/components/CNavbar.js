@@ -17,6 +17,8 @@ import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
 
+import { Link } from 'react-router-dom';
+
 import { appName } from '../constants/shared.ts';
 
 import { handleSetAuthedUser } from '../actions/authedUserI';
@@ -44,16 +46,20 @@ class CNavbar extends Component {
                     <Toolbar className="app-navbar">
                         <Grid container justify="space-between">
                             <Grid item>
-                                <Typography color="inherit" variant="title">
-                                    {appName}
-                                </Typography>
+                                <Link to="/" className="app-link">
+                                    <Typography color="inherit" variant="title">
+                                        {appName}
+                                    </Typography>
+                                </Link>
                             </Grid>
                             <Grid item>
                                 {
                                     authedUser === "" &&
-                                    <Button color="inherit">
-                                        log in
-                                    </Button> 
+                                    <Link to="/login" className="app-link">
+                                        <Button color="inherit">
+                                            log in
+                                        </Button> 
+                                    </Link>
                                 }
                                 {
                                     authedUser !== ""  &&
