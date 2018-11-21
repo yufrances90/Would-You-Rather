@@ -10,7 +10,8 @@ import {
     Tooltip
 } from '@material-ui/core';
 import {
-    AccountCircle
+    AccountCircle,
+    Dashboard
 } from '@material-ui/icons';
 
 import { connect } from 'react-redux';
@@ -26,7 +27,8 @@ import { handleSetAuthedUser } from '../actions/authedUserI';
 class CNavbar extends Component {
 
     static propTypes = {
-        authedUser: PropTypes.string.isRequired
+        authedUser: PropTypes.string.isRequired,
+        dispatch: PropTypes.func.isRequired
     }
 
     handleLogOutButtonClick(event) {
@@ -68,6 +70,13 @@ class CNavbar extends Component {
                                     <span>
                                         <Typography color="inherit" variant="button">
                                             {authedUser}
+                                            <Tooltip title="Leaderboard">
+                                                <IconButton color="inherit">
+                                                    <Link to="/leaderboard" style={{color: 'white'}} >
+                                                        <Dashboard />
+                                                    </Link>
+                                                </IconButton>
+                                            </Tooltip>
                                             <Tooltip title="Log Out">
                                                 <IconButton 
                                                     color="inherit" 
