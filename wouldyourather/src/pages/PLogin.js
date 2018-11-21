@@ -33,6 +33,8 @@ class PLogin extends Component {
         event.preventDefault();
 
         this.props.dispatch(handleSetAuthedUser(userId));
+
+        this.props.history.push("/");
     }
 
     render() {
