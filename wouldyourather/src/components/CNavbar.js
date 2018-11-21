@@ -13,26 +13,21 @@ import {
     AccountCircle
 } from '@material-ui/icons';
 
+import { connect } from 'react-redux';
+
+import PropTypes from 'prop-types';
+
 import { appName } from '../constants/shared.ts';
 
 class CNavbar extends Component {
 
-    state = {
-        isLoggedIn: false,
-        currentUser: "Frances"
-    }
-
-    handleToggleLogInButton() {
-        this.setState((prevState) => {
-            return {
-                isLoggedIn: !prevState.isLoggedIn
-            }
-        })
+    static propTypes = {
+        authedUser: PropTypes.string.isRequired
     }
 
     render() {
 
-        const { isLoggedIn } = this.state;
+        const { authedUser } = this.props;
         
         return (
             <div>
@@ -46,18 +41,18 @@ class CNavbar extends Component {
                             </Grid>
                             <Grid item>
                                 {
-                                    !isLoggedIn &&
-                                    <Button color="inherit" onClick={this.handleToggleLogInButton.bind(this)}>
+                                    authedUser === "" &&
+                                    <Button color="inherit">
                                         log in
                                     </Button> 
                                 }
                                 {
-                                    isLoggedIn &&
+                                    authedUser !== ""  &&
                                     <span>
                                         <Typography color="inherit" variant="button">
-                                            {this.state.currentUser}
+                                            {authedUser}
                                             <Tooltip title="Log Out">
-                                                <IconButton color="inherit" onClick={this.handleToggleLogInButton.bind(this)}>
+                                                <IconButton color="inherit">
                                                     <AccountCircle />
                                                 </IconButton> 
                                             </Tooltip>
@@ -73,4 +68,10 @@ class CNavbar extends Component {
     }
 }
 
-export default CNavbar;
+function mapStateToProps({ authedUser }) {
+    return {
+        authedUser: authedUser.userId
+    };
+}
+
+export default connect(mapStateToProps)(CNavbar);
