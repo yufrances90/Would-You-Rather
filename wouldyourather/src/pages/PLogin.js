@@ -2,25 +2,30 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 
+import {
+    LinearProgress
+} from '@material-ui/core';
+
 import { handleGetAllUsers } from '../actions/usersI';
 
 class PLogin extends Component {
 
     componentDidMount() {
-
+        
         const { users } = this.props;
 
         if(!users) {
             this.props.dispatch(handleGetAllUsers());
         }
-        
     }
 
     render() {
 
         const { users } = this.props;
 
-        console.log(users);
+        if (!users) {
+            return <LinearProgress />;
+        }
 
         return (
             <div>
@@ -36,4 +41,4 @@ function mapStateToProps({ users }) {
     };
 }
 
-export default connect()(PLogin);
+export default connect(mapStateToProps)(PLogin);
