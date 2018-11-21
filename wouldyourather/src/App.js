@@ -1,24 +1,17 @@
 import React, { Component } from 'react';
+
 import './App.css';
-
-import { connect } from 'react-redux';
-
-import { handleGetAllUsers } from './actions/usersI';
-
+import PLogin from './pages/PLogin';
 
 class App extends Component {
-
-    componentDidMount() {
-        this.props.dispatch(handleGetAllUsers());
-    }
 
     render() {
         return (
             <div className="App">
-                Hello World
+                <PLogin />
             </div>
         );
   }
 }
 
-export default connect()(App);
+export default App;
