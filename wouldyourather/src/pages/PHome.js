@@ -4,14 +4,21 @@ import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
 
+import {
+    Grid
+} from '@material-ui/core';
+
 import { handleGetInitialData } from '../actions/shared';
+
+import CTabs from '../components/CTabs';
+import Profile from '../components/Profile';
 
 class PHome extends Component {
 
     static propTypes = {
         authedUser: PropTypes.string.isRequired,
         history: PropTypes.object.isRequired,
-        currentUser: PropTypes.object.isRequired,
+        currentUser: PropTypes.object,
         questions: PropTypes.object.isRequired
     }
 
@@ -52,12 +59,42 @@ class PHome extends Component {
 
         const { currentUser, questions } = this.props;
 
-        console.log(currentUser);
-        console.log(questions);
-        
         return (
             <div>
-                Hello from PHome
+                <Grid container>
+                    <Grid item xs={1}>
+                    </Grid>
+                    <Grid 
+                        item 
+                        xs={2}
+                        style={{
+                            borderRight: "1px solid lightgray",
+
+                        }} 
+                    >
+                        {
+                            currentUser && 
+                            <Profile currentUser={currentUser} />
+                        }
+                    </Grid>
+                    <Grid 
+                        item 
+                        xs={8}
+                        style={{
+                            paddingLeft: "2em"
+                        }}
+                    >
+                        {
+                            currentUser && 
+                            <CTabs 
+                                currentUser={currentUser} 
+                                questions={questions} 
+                            />  
+                        }
+                    </Grid>
+                    <Grid item xs={1}>
+                    </Grid>
+                </Grid>
             </div>
         );
     }
