@@ -3,9 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^3.5.1",
+    "@material-ui/icons": "^3.0.1",
     "@types/react-redux": "^6.0.9",
+    "contentful": "^7.0.5",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
+    "react-material-ui": "0.0.1",
     "react-redux": "^5.1.1",
     "react-scripts-ts": "^4.0.8",
     "redux": "^4.0.1",
