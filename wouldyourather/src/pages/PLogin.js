@@ -19,9 +19,11 @@ import LoginForm from '../components/LoginForm';
 
 class PLogin extends Component {
 
-    static propTypes ={
+    static propTypes = {
         dispatch: PropTypes.func.isRequired,
-        users: PropTypes.object.isRequired
+        users: PropTypes.object.isRequired,
+        location: PropTypes.object.isRequired,
+        history: PropTypes.object.isRequired
     }
 
     componentDidMount() {
@@ -32,9 +34,16 @@ class PLogin extends Component {
         
         event.preventDefault();
 
-        this.props.dispatch(handleSetAuthedUser(userId));
+        const { location, history, dispatch } = this.props;
+        const { state } = location;
 
-        this.props.history.push("/");
+        dispatch(handleSetAuthedUser(userId));
+
+        if(!state) {
+            history.push("/");
+        } else {
+            history.push(state.redirectUrl);
+        }
     }
 
     render() {
