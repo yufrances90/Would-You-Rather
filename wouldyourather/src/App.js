@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css';
 import PLogin from './pages/PLogin';
 import CNavbar from './components/CNavbar';
+import PHome from './pages/PHome';
+import PLeaderboard from './pages/PLeaderboard';
 
 class App extends Component {
 
@@ -14,7 +16,9 @@ class App extends Component {
                 <div className="App">
                     <CNavbar />
                     <div className="app-body">
+                        <Route exact path="/" component={PHome} />
                         <Route exact path="/login" component={PLogin} />
+                        <Route exact path="/leaderboard" component={PLeaderboard} />
                     </div>
                 </div>
             </Router>
