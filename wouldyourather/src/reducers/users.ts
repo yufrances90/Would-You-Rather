@@ -1,5 +1,5 @@
 import { UserActionTypes } from '../constants/users';
-// import { QuestionActionTypes } from '../constants/questions';
+import { QuestionActionTypes } from '../constants/questions';
 import { UserAction } from '../actions/users';
 import { QuestionAction} from '../actions/questions';
 import UserState from '../types/userState';
@@ -31,22 +31,19 @@ export default function users(
         //             }
         //         })
         //     };
-        // case QuestionActionTypes.SAVE_QUESTION_ANSWER:
-        //     return {
-        //         list: state.list.map(user => {
-        //             if (user.id !== action.authedUser) {
-        //                 return user;
-        //             } else {
-        //                 return {
-        //                     ...user,
-        //                     answers: {
-        //                         ...user.answers,
-        //                         [action.qid]: action.answer
-        //                     }
-        //                 }
-        //             }
-        //         })
-        //     };
+        case QuestionActionTypes.SAVE_QUESTION_ANSWER:
+            return {
+                users: {
+                    ...state.users,
+                    [action.authedUser]: {
+                        ...state.users[action.authedUser],
+                        answers: {
+                            ...state.users[action.authedUser].answers,
+                            [action.qid]: action.answer
+                        }
+                    }
+                }
+            };
         default: 
             return state;
     }

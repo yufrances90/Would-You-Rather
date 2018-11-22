@@ -15,7 +15,8 @@ class QDetails extends Component {
         question: PropTypes.object.isRequired,
         author: PropTypes.object.isRequired,
         questionType: PropTypes.number.isRequired, /* 0: unanswered, 1: answered */
-        currentUser: PropTypes.object.isRequired
+        currentUser: PropTypes.object.isRequired,
+        handleConfirmBtnClick: PropTypes.func.isRequired
     }
 
     render() {
@@ -24,7 +25,8 @@ class QDetails extends Component {
             question, 
             author, 
             questionType,
-            currentUser 
+            currentUser,
+            handleConfirmBtnClick 
         } = this.props;
 
         return (
@@ -34,7 +36,11 @@ class QDetails extends Component {
                         <QProfile author={author} />
                     </Grid>
                     <Grid item xs={9}>
-                        <QQuestion question={question} currentUser={currentUser} />
+                        <QQuestion 
+                            question={question} 
+                            currentUser={currentUser} 
+                            handleConfirmBtnClick={handleConfirmBtnClick}
+                        />
                     </Grid>
                 </Grid>
             </div>

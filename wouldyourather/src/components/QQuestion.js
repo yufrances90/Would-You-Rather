@@ -16,7 +16,8 @@ class QQuestion extends Component {
 
     static propTypes = {
         question: PropTypes.object.isRequired,
-        currentUser: PropTypes.object.isRequired
+        currentUser: PropTypes.object.isRequired,
+        handleConfirmBtnClick: PropTypes.func.isRequired
     }
 
     state = {
@@ -30,6 +31,22 @@ class QQuestion extends Component {
         this.setState({
             selectedIndex: value
         })
+    }
+
+    handleClick(event) {
+
+        event.preventDefault();
+
+        const { 
+            question, 
+            currentUser, 
+            handleConfirmBtnClick 
+        } = this.props; 
+
+        const answer = (this.state.selectedIndex === 1)? 
+            Options.OPTION_ONE : Options.OPTION_TWO;
+
+        handleConfirmBtnClick(currentUser.id, question.id, answer);
     }
 
     render() {
@@ -68,7 +85,8 @@ class QQuestion extends Component {
                 <Button 
                     variant="outlined" 
                     style={{margin: "2em 10em"}}
-                    disabled={selectedIndex === 0 || answer} 
+                    disabled={selectedIndex === 0 || answer}
+                    onClick={this.handleClick.bind(this)} 
                 >
                     Confirm
                 </Button>

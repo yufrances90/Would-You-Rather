@@ -7,10 +7,14 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
 import {
-    Grid
+    Grid,
+    Button
 } from '@material-ui/core';
 
-import { handleGetAllQuestions } from '../actions/questionsI';
+import { 
+    handleGetAllQuestions,
+    handleSaveQuestionAnswer 
+} from '../actions/questionsI';
 
 import QDetails from '../components/QDetails';
 
@@ -50,6 +54,14 @@ class PQuestion extends Component {
         }
     }
 
+    handleConfirmBtnClick(authedUser, qid, answer) {
+        this.props.dispatch(handleSaveQuestionAnswer(
+            authedUser,
+            qid,
+            answer
+        ));
+    }
+
     render() {
 
         const { location, questions, users } = this.props;
@@ -85,6 +97,7 @@ class PQuestion extends Component {
                             author={author} 
                             questionType={questionType}
                             currentUser={currentUser} 
+                            handleConfirmBtnClick={this.handleConfirmBtnClick.bind(this)}
                         />
                     </Grid>
                     <Grid item xs={2}>

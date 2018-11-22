@@ -3,7 +3,7 @@ import * as API from '../utils/api';
 import {
     getAllQuestions,
     // saveQuestion,
-    // saveQuestionAnswer
+    saveQuestionAnswer
 } from './questions';
 
 export function handleGetAllQuestions() {
@@ -11,4 +11,11 @@ export function handleGetAllQuestions() {
         return API.getQuestions()
         .then(res => dispatch(getAllQuestions(res.questions)));
     };
+}
+
+export function handleSaveQuestionAnswer(authedUser, qid, answer) {
+    return (dispatch) => {
+        return API.saveQuestionAnswer({ authedUser, qid, answer })
+        .then(res => dispatch(saveQuestionAnswer(authedUser, qid, answer)));
+    }
 }
