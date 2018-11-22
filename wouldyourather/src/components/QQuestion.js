@@ -10,6 +10,8 @@ import {
     Button
 } from '@material-ui/core';
 
+import { Options } from '../constants/questions';
+
 class QQuestion extends Component {
 
     static propTypes = {
@@ -45,21 +47,21 @@ class QQuestion extends Component {
                 </Typography>
                 <List className="app-flex-container">
                     <MenuItem
-                        selected={selectedIndex === 0 || answer === "optionOne"}
+                        selected={selectedIndex === 0 || answer === Options.OPTION_ONE}
                         onClick={event => this.handleChange(event, 0)}
                         disabled={answer}
                     >
                         <ListItemText>
-                            a. {question.optionOne.text}
+                            a. {question[Options.OPTION_ONE].text}
                         </ListItemText>
                     </MenuItem>
                     <MenuItem
-                        selected={selectedIndex === 1 || answer === "optionTwo"}
+                        selected={selectedIndex === 1 || answer === Options.OPTION_TWO}
                         onClick={event => this.handleChange(event, 1)}
                         disabled={answer}
                     >
                         <ListItemText>
-                            b. {question.optionTwo.text}
+                            b. {question[Options.OPTION_TWO].text}
                         </ListItemText>
                     </MenuItem>
                 </List>
