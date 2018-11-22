@@ -32,9 +32,11 @@ class QQuestion extends Component {
 
     render() {
 
-        const { question } = this.props;
+        const { question, currentUser } = this.props;
 
         const { selectedIndex } = this.state;
+
+        const answer = currentUser.answers[question.id];
 
         return (
             <div style={{paddingTop: "2em" }}>
@@ -43,16 +45,18 @@ class QQuestion extends Component {
                 </Typography>
                 <List className="app-flex-container">
                     <MenuItem
-                        selected={selectedIndex === 0}
+                        selected={selectedIndex === 0 || answer === "optionOne"}
                         onClick={event => this.handleChange(event, 0)}
+                        disabled={answer}
                     >
                         <ListItemText>
                             a. {question.optionOne.text}
                         </ListItemText>
                     </MenuItem>
                     <MenuItem
-                        selected={selectedIndex === 1}
+                        selected={selectedIndex === 1 || answer === "optionTwo"}
                         onClick={event => this.handleChange(event, 1)}
+                        disabled={answer}
                     >
                         <ListItemText>
                             b. {question.optionTwo.text}
@@ -62,7 +66,7 @@ class QQuestion extends Component {
                 <Button 
                     variant="outlined" 
                     style={{margin: "2em 10em"}}
-                    disabled={selectedIndex === -1} 
+                    disabled={selectedIndex === -1 || answer} 
                 >
                     Confirm
                 </Button>
