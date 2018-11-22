@@ -10,3 +10,10 @@
     text-decoration: none;
     color: inherit;
 }
+
+.app-flex-container {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    width: 100%;
+}

@@ -20,9 +20,6 @@ class QDetails extends Component {
 
         const { question, author } = this.props;
 
-        console.log(question);
-        console.log(author);
-
         return (
             <div>
                 <Grid container>
@@ -30,7 +27,7 @@ class QDetails extends Component {
                         <QProfile author={author} />
                     </Grid>
                     <Grid item xs={9}>
-                        <QQuestion />
+                        <QQuestion question={question} />
                     </Grid>
                 </Grid>
             </div>
