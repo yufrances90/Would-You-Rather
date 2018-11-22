@@ -58,7 +58,11 @@ class QQuestion extends Component {
                         </ListItemText>
                     </MenuItem>
                 </List>
-                <Button variant="outlined" style={{margin: "2em 10em"}}>
+                <Button 
+                    variant="outlined" 
+                    style={{margin: "2em 10em"}}
+                    disabled={selectedIndex === -1} 
+                >
                     Confirm
                 </Button>
             </div>
