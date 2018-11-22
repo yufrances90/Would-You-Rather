@@ -20,7 +20,7 @@ class QQuestion extends Component {
     }
 
     state = {
-        selectedIndex: -1 /** 0: option 1, 1: option 2 */
+        selectedIndex: 0 /** 1: option 1, 2: option 2 */
     }
 
     handleChange(event, value) {
@@ -47,8 +47,8 @@ class QQuestion extends Component {
                 </Typography>
                 <List className="app-flex-container">
                     <MenuItem
-                        selected={selectedIndex === 0 || answer === Options.OPTION_ONE}
-                        onClick={event => this.handleChange(event, 0)}
+                        selected={selectedIndex === 1 || answer === Options.OPTION_ONE}
+                        onClick={event => this.handleChange(event, 1)}
                         disabled={answer}
                     >
                         <ListItemText>
@@ -56,8 +56,8 @@ class QQuestion extends Component {
                         </ListItemText>
                     </MenuItem>
                     <MenuItem
-                        selected={selectedIndex === 1 || answer === Options.OPTION_TWO}
-                        onClick={event => this.handleChange(event, 1)}
+                        selected={selectedIndex === 2 || answer === Options.OPTION_TWO}
+                        onClick={event => this.handleChange(event, 2)}
                         disabled={answer}
                     >
                         <ListItemText>
@@ -68,7 +68,7 @@ class QQuestion extends Component {
                 <Button 
                     variant="outlined" 
                     style={{margin: "2em 10em"}}
-                    disabled={selectedIndex === -1 || answer} 
+                    disabled={selectedIndex === 0 || answer} 
                 >
                     Confirm
                 </Button>
