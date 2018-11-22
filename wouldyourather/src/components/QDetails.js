@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
+import {
+    Grid
+} from '@material-ui/core';
+
+import QProfile from './QProfile';
+import QQuestion from './QQuestion';
+
 class QDetails extends Component {
 
     static propTypes = {
@@ -18,7 +25,14 @@ class QDetails extends Component {
 
         return (
             <div>
-                Hello from QDetails
+                <Grid container>
+                    <Grid item xs={3}>
+                        <QProfile author={author} />
+                    </Grid>
+                    <Grid item xs={9}>
+                        <QQuestion />
+                    </Grid>
+                </Grid>
             </div>
         );
     }

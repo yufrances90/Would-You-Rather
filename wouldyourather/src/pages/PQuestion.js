@@ -6,6 +6,10 @@ import PropTypes from 'prop-types';
 
 import { Redirect } from 'react-router-dom';
 
+import {
+    Grid
+} from '@material-ui/core';
+
 import { handleGetAllQuestions } from '../actions/questionsI';
 
 import QDetails from '../components/QDetails';
@@ -66,7 +70,15 @@ class PQuestion extends Component {
         
         return (
             <div>
-                <QDetails question={question} author={author} />
+                <Grid container>
+                    <Grid item xs={2}>
+                    </Grid>
+                    <Grid item xs={8}>
+                        <QDetails question={question} author={author} />
+                    </Grid>
+                    <Grid item xs={2}>
+                    </Grid>
+                </Grid>
             </div>
         );
     }
