@@ -13,12 +13,19 @@ class QDetails extends Component {
 
     static propTypes = {
         question: PropTypes.object.isRequired,
-        author: PropTypes.object.isRequired
+        author: PropTypes.object.isRequired,
+        questionType: PropTypes.number.isRequired, /* 0: unanswered, 1: answered */
+        currentUser: PropTypes.object.isRequired
     }
 
     render() {
 
-        const { question, author } = this.props;
+        const { 
+            question, 
+            author, 
+            questionType,
+            currentUser 
+        } = this.props;
 
         return (
             <div>
@@ -27,7 +34,7 @@ class QDetails extends Component {
                         <QProfile author={author} />
                     </Grid>
                     <Grid item xs={9}>
-                        <QQuestion question={question} />
+                        <QQuestion question={question} currentUser={currentUser} />
                     </Grid>
                 </Grid>
             </div>

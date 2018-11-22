@@ -58,7 +58,11 @@ class PQuestion extends Component {
             return <Redirect to="/" />
         }
 
-        const { questionId } = location.state;
+        const { 
+            questionId, 
+            questionType, 
+            currentUserId 
+        } = location.state; /* 0: unanswered, 1: answered */
 
         const question = questions[questionId];
 
@@ -67,6 +71,8 @@ class PQuestion extends Component {
         }
 
         const author = users[question.author];
+
+        const currentUser = users[currentUserId];
         
         return (
             <div>
@@ -74,7 +80,12 @@ class PQuestion extends Component {
                     <Grid item xs={2}>
                     </Grid>
                     <Grid item xs={8}>
-                        <QDetails question={question} author={author} />
+                        <QDetails 
+                            question={question} 
+                            author={author} 
+                            questionType={questionType}
+                            currentUser={currentUser} 
+                        />
                     </Grid>
                     <Grid item xs={2}>
                     </Grid>

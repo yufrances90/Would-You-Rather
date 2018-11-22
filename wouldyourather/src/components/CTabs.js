@@ -56,13 +56,20 @@ class CTabs extends Component {
 
         const filteredQs = this.getQuestions(answeredQs, unansweredQs);
 
+        const { currentUser } = this.props;
+        const currentUserId = currentUser.id;
+
         return (
             <div>
                 <Tabs value={questionType} onChange={this.handleChange.bind(this)}>
                     <Tab label="Unanswered Questions" />
                     <Tab label="Answered Questions" />
                 </Tabs>
-                <CTab questions={filteredQs} />
+                <CTab 
+                    questions={filteredQs} 
+                    questionType={questionType} 
+                    currentUserId={currentUserId}
+                />
             </div>
         );
     }

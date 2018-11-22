@@ -13,7 +13,8 @@ import {
 class QQuestion extends Component {
 
     static propTypes = {
-        question: PropTypes.object.isRequired
+        question: PropTypes.object.isRequired,
+        currentUser: PropTypes.object.isRequired
     }
 
     state = {

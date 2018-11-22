@@ -16,12 +16,18 @@ import { Link } from 'react-router-dom';
 class ListQuestions extends Component {
 
     static propTypes = {
-        questions: PropTypes.array.isRequired
+        questions: PropTypes.array.isRequired,
+        questionType: PropTypes.number.isRequired,
+        currentUserId: PropTypes.string.isRequired 
     }
     
     render() {
 
-        const { questions}  = this.props;
+        const { 
+            questions, 
+            questionType, 
+            currentUserId 
+        }  = this.props;
 
         return (
             <div>
@@ -35,7 +41,9 @@ class ListQuestions extends Component {
                                 <Link to={{
                                     pathname: `/questions/${question.id}`,
                                     state: {
-                                        questionId: question.id
+                                        questionId: question.id,
+                                        questionType, /* 0: unanswered, 1: answered */
+                                        currentUserId
                                     }
                                 }}>
                                     <LinkIcon />

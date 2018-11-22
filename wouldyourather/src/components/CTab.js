@@ -11,16 +11,26 @@ import ListQuestions from './ListQuestions';
 class CTab extends Component {
 
     static propTypes = {
-        questions: PropTypes.array.isRequired
+        questions: PropTypes.array.isRequired,
+        questionType: PropTypes.number.isRequired, /* 0: unanswered, 1: answered */
+        currentUserId: PropTypes.string.isRequired
     }
 
     render() {
 
-        const { questions } = this.props;
+        const { 
+            questions, 
+            questionType, 
+            currentUserId 
+        } = this.props;
 
         return (
             <div style={{paddingTop: '2em'}}>
-                <ListQuestions questions={questions} />
+                <ListQuestions 
+                    questions={questions} 
+                    questionType={questionType}
+                    currentUserId={currentUserId}
+                />
             </div>
         );
     }
