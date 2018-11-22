@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import {
-    Grid
+    Grid,
+    LinearProgress
 } from '@material-ui/core';
 
 import { handleGetInitialData } from '../actions/shared';
@@ -59,6 +60,10 @@ class PHome extends Component {
 
         const { currentUser, questions } = this.props;
 
+        if (!currentUser || Object.keys(questions).length === 0) {
+            return <LinearProgress />
+        }
+
         return (
             <div>
                 <Grid container>
@@ -71,11 +76,8 @@ class PHome extends Component {
                             borderRight: "1px solid lightgray",
 
                         }} 
-                    >
-                        {
-                            currentUser && 
-                            <Profile currentUser={currentUser} />
-                        }
+                    >  
+                        <Profile currentUser={currentUser} />
                     </Grid>
                     <Grid 
                         item 
@@ -84,14 +86,10 @@ class PHome extends Component {
                             paddingLeft: "2em"
                         }}
                     >
-                        {
-                            currentUser &&
-                            Object.keys(questions).length !== 0 && 
-                            <CTabs 
-                                currentUser={currentUser} 
-                                questions={questions} 
-                            />  
-                        }
+                       <CTabs 
+                            currentUser={currentUser} 
+                            questions={questions} 
+                        />  
                     </Grid>
                     <Grid item xs={1}>
                     </Grid>

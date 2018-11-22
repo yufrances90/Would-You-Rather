@@ -4,17 +4,30 @@ import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
 
+import { Redirect } from 'react-router-dom';
+
+import { handleGetAllQuestions } from '../actions/questionsI';
+
+import QDetails from '../components/QDetails';
+
 class PQuestion extends Component {
 
     static propTypes = {
         authedUser: PropTypes.string.isRequired,
         history: PropTypes.object.isRequired,
-        location: PropTypes.object.isRequired
+        location: PropTypes.object.isRequired,
+        questions: PropTypes.object.isRequired,
+        users: PropTypes.object.isRequired
     }
 
     componentDidMount() {
 
-        const { authedUser, history, location } = this.props;
+        const { 
+            authedUser, 
+            history, 
+            location, 
+            questions 
+        } = this.props;
 
         if (authedUser === "") {
 
@@ -27,20 +40,44 @@ class PQuestion extends Component {
                 }
             })
         }
+
+        if (Object.keys(questions).length === 0) {
+            this.props.dispatch(handleGetAllQuestions());
+        }
     }
 
     render() {
+
+        const { location, questions, users } = this.props;
+
+        if (!location.state) {
+            return <Redirect to="/" />
+        }
+
+        const { questionId } = location.state;
+
+        const question = questions[questionId];
+
+        if (!question) {
+            return <Redirect to="/notfound" />
+        }
+
+        const author = users[question.author];
+        
         return (
             <div>
-                Hello from PQuestion
+                <QDetails question={question} author={author} />
             </div>
         );
     }
 }
 
-function mapStateToProps({ authedUser }) {
+function mapStateToProps({ authedUser, users, questions }) {
+
     return {
-        authedUser: authedUser.userId
+        authedUser: authedUser.userId,
+        users: users.users,
+        questions: questions.questions
     };
 }
 
