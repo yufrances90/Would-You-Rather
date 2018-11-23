@@ -1,6 +1,10 @@
 import React, { Component, Fragment } from 'react';
 
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { 
+    BrowserRouter as Router, 
+    Route, 
+    Switch 
+} from 'react-router-dom';
 
 import './App.css';
 import PLogin from './pages/PLogin';
@@ -19,12 +23,14 @@ class App extends Component {
                 <div className="App">
                     <CNavbar />
                     <div className="app-body">
-                        <Route exact path="/" component={PHome} />
-                        <Route exact path="/login" component={PLogin} />
-                        <Route exact path="/leaderboard" component={PLeaderboard} />
-                        <Route exact path="/notfound"  component={PNotFound} />
-                        <Route exact path="/add" component={PAdd} />
-                        <Route exact path="/questions/:question_id" component={PQuestion} />
+                        <Switch>
+                            <Route exact path="/" component={PHome} />
+                            <Route path="/login" component={PLogin} />
+                            <Route path="/leaderboard" component={PLeaderboard} />
+                            <Route path="/add" component={PAdd} />
+                            <Route path="/questions/:question_id" component={PQuestion} />
+                            <Route component={PNotFound} />
+                        </Switch>
                     </div>
                 </div>
             </Router>
