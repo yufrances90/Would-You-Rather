@@ -31,6 +31,18 @@ export default function users(
                     }
                 }
             };
+        case QuestionActionTypes.SAVE_QUESTION:
+            return {
+                users: {
+                    ...state.users,
+                    [action.question.author]: {
+                        ...state.users[action.question.author],
+                        questions: 
+                            state.users[action.question.author]
+                                .questions.concat([action.question.id])
+                    }
+                }
+            };
         default: 
             return state;
     }
