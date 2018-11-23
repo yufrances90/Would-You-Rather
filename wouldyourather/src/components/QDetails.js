@@ -17,7 +17,8 @@ class QDetails extends Component {
         author: PropTypes.object.isRequired,
         questionType: PropTypes.number.isRequired, /* 0: unanswered, 1: answered */
         currentUser: PropTypes.object.isRequired,
-        handleConfirmBtnClick: PropTypes.func.isRequired
+        handleConfirmBtnClick: PropTypes.func.isRequired,
+        isVoted: PropTypes.bool.isRequired
     }
 
     render() {
@@ -27,7 +28,8 @@ class QDetails extends Component {
             author, 
             questionType,
             currentUser,
-            handleConfirmBtnClick 
+            handleConfirmBtnClick,
+            isVoted
         } = this.props;
 
         return (
@@ -42,7 +44,10 @@ class QDetails extends Component {
                             currentUser={currentUser} 
                             handleConfirmBtnClick={handleConfirmBtnClick}
                         />
-                        <QStats question={question} />
+                        {
+                            ((questionType === 1) || isVoted) && 
+                            <QStats question={question} />
+                        }
                     </Grid>
                 </Grid>
             </div>

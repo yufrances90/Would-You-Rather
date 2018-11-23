@@ -10,6 +10,10 @@ class QStats extends Component {
         question: PropTypes.object.isRequired
     }
 
+    calculatePercentageAndFormatRes(count, totalCount) {
+        return ((count / totalCount) * 100).toFixed(2);
+    }
+
     render() {
 
         const { question } = this.props;
@@ -22,10 +26,12 @@ class QStats extends Component {
         return (
             <div>
                 <p>
-                    Option a.: {optionOneCount} [{optionOneCount / totalCount}]
+                    Option a: {optionOneCount} &nbsp; &nbsp;
+                    [ { this.calculatePercentageAndFormatRes(optionOneCount, totalCount) }% ]
                 </p>
                 <p>
-                    Option b.: {optionTwoCount} [{optionTwoCount / totalCount}]
+                    Option b: {optionTwoCount} &nbsp; &nbsp;
+                    [ { this.calculatePercentageAndFormatRes(optionTwoCount, totalCount) }% ]
                 </p>
             </div>
         );

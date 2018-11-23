@@ -28,6 +28,10 @@ class PQuestion extends Component {
         users: PropTypes.object.isRequired
     }
 
+    state = {
+        isVoted: false
+    }
+
     componentDidMount() {
 
         const { 
@@ -54,12 +58,21 @@ class PQuestion extends Component {
         }
     }
 
+    handleSetVoted() {
+        this.setState({
+            isVoted: true
+        });
+    }
+
     handleConfirmBtnClick(authedUser, qid, answer) {
+
         this.props.dispatch(handleSaveQuestionAnswer(
             authedUser,
             qid,
             answer
         ));
+
+        this.handleSetVoted();
     }
 
     render() {
@@ -85,6 +98,8 @@ class PQuestion extends Component {
         const author = users[question.author];
 
         const currentUser = users[currentUserId];
+
+        const { isVoted } = this.state;
         
         return (
             <div>
@@ -98,6 +113,7 @@ class PQuestion extends Component {
                             questionType={questionType}
                             currentUser={currentUser} 
                             handleConfirmBtnClick={this.handleConfirmBtnClick.bind(this)}
+                            isVoted={isVoted}
                         />
                     </Grid>
                     <Grid item xs={2}>
