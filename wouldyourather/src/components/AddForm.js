@@ -22,6 +22,13 @@ class AddForm extends Component {
         });
     }
 
+    handleClickButtonClick(event) {
+        this.setState({
+            [Options.OPTION_ONE]: '',
+            [Options.OPTION_TWO]: ''
+        })
+    }
+
     handleClick(event) {
 
         event.preventDefault();
@@ -37,7 +44,7 @@ class AddForm extends Component {
 
         return (
             <form>
-                <Typography variant="title">
+                <Typography variant="title" style={{textAlign: "right"}}>
                     Add New Poll
                 </Typography>
                 <Divider />
@@ -70,9 +77,22 @@ class AddForm extends Component {
                 <br /><br /><br />
                 <Button 
                     variant="outlined" 
-                    style={{float: "right"}} 
+                    onClick={this.handleClickButtonClick.bind(this)}
+                    disabled={
+                        (optionOne === '' && optionTwo === '')
+                    }
+                    color="secondary"
+                >
+                    clear
+                </Button>
+                <Button 
+                    variant="outlined" 
+                    style={{ 
+                        marginLeft: "0.5em"
+                    }} 
                     onClick={this.handleClick.bind(this)}
                     disabled={optionOne === '' || optionTwo === ''}
+                    color="primary"
                 >
                     submit
                 </Button>
