@@ -2,7 +2,7 @@ import * as API from '../utils/api';
 
 import {
     getAllQuestions,
-    // saveQuestion,
+    saveQuestion,
     saveQuestionAnswer
 } from './questions';
 
@@ -17,5 +17,18 @@ export function handleSaveQuestionAnswer(authedUser, qid, answer) {
     return (dispatch) => {
         return API.saveQuestionAnswer({ authedUser, qid, answer })
         .then(res => dispatch(saveQuestionAnswer(authedUser, qid, answer)));
+    }
+}
+
+export function handleSaveQuestion(question) {
+    /**
+     *  question: An object consists of 
+     *      - optionOneText, 
+     *      - optionTwoText,
+     *      - author (string)
+     */
+    return (dispatch) => {
+        return API.saveQuestion(question)
+        .then(res => dispatch(saveQuestion(res)));
     }
 }

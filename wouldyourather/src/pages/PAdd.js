@@ -5,8 +5,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import {
-    Grid
+    Grid,
+    Button
 } from '@material-ui/core';
+
+import { handleSaveQuestion } from '../actions/questionsI';
 
 import AddForm from '../components/AddForm';
 
@@ -19,6 +22,13 @@ class PAdd extends Component {
 
     state = {
         redirectUrl: "/add"
+    }
+
+    handleAddNewQuestion(question) {
+
+        this.props.dispatch(handleSaveQuestion(question));
+
+        this.props.history.push("/");
     }
 
     componentDidMount() {
@@ -38,13 +48,19 @@ class PAdd extends Component {
     }
 
     render() {
+
+        const { authedUser } = this.props;
+
         return (
             <div>
                 <Grid container> 
                     <Grid item xs={3}>
                     </Grid>
                     <Grid item xs={6}>
-                        <AddForm />
+                        <AddForm 
+                            handleAddNewQuestion={this.handleAddNewQuestion.bind(this)}
+                            author={authedUser}
+                        />
                     </Grid>
                     <Grid item xs={3}>
                     </Grid>

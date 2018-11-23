@@ -7,9 +7,16 @@ import {
     Button
 } from '@material-ui/core';
 
+import PropTypes from 'prop-types';
+
 import { Options } from '../constants/questions';
 
 class AddForm extends Component {
+
+    static propTypes = {
+        handleAddNewQuestion: PropTypes.func.isRequired,
+        author: PropTypes.string.isRequired
+    }
 
     state = {
         [Options.OPTION_ONE]: '',
@@ -35,7 +42,15 @@ class AddForm extends Component {
 
         const { optionOne, optionTwo } = this.state;
 
-        console.log(optionOne);
+        const { author, handleAddNewQuestion } = this.props;
+
+        const question = {
+            optionOneText: optionOne,
+            optionTwoText: optionTwo,
+            author
+        }
+
+        handleAddNewQuestion(question);
     }
 
     render() {

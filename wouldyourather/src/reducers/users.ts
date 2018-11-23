@@ -18,19 +18,6 @@ export default function users(
             return {
                 users: action.users
             };
-        // case QuestionActionTypes.SAVE_QUESTION:
-        //     return {
-        //         list: state.list.map(user => {
-        //             if (user.id !== action.question.author) {
-        //                 return user;
-        //             } else {
-        //                 return {
-        //                     ...user,
-        //                     questions: user.questions.concat([action.question.id])
-        //                 };
-        //             }
-        //         })
-        //     };
         case QuestionActionTypes.SAVE_QUESTION_ANSWER:
             return {
                 users: {
