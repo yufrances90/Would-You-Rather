@@ -16,9 +16,24 @@ class AddForm extends Component {
         [Options.OPTION_TWO]: ''
     }
 
+    handleChange(event) {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+    }
+
+    handleClick(event) {
+
+        event.preventDefault();
+
+        const { optionOne, optionTwo } = this.state;
+
+        console.log(optionOne);
+    }
+
     render() {
 
-        console.log(this.state);
+        const { optionOne, optionTwo } = this.state;
 
         return (
             <form>
@@ -38,6 +53,8 @@ class AddForm extends Component {
                     name={Options.OPTION_ONE}
                     style={{width: "100%"}}
                     variant="outlined"
+                    value={optionOne}
+                    onChange={this.handleChange.bind(this)}
                 />
                 <br /><br /><br />
                 <TextField
@@ -47,11 +64,15 @@ class AddForm extends Component {
                     name={Options.OPTION_TWO}
                     style={{width: "100%"}}
                     variant="outlined"
+                    value={optionTwo}
+                    onChange={this.handleChange.bind(this)}
                 />
                 <br /><br /><br />
                 <Button 
                     variant="outlined" 
                     style={{float: "right"}} 
+                    onClick={this.handleClick.bind(this)}
+                    disabled={optionOne === '' || optionTwo === ''}
                 >
                     submit
                 </Button>
