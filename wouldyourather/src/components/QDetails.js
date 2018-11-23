@@ -8,6 +8,7 @@ import {
 
 import QProfile from './QProfile';
 import QQuestion from './QQuestion';
+import QStats from './QStats';
 
 class QDetails extends Component {
 
@@ -41,6 +42,7 @@ class QDetails extends Component {
                             currentUser={currentUser} 
                             handleConfirmBtnClick={handleConfirmBtnClick}
                         />
+                        <QStats question={question} />
                     </Grid>
                 </Grid>
             </div>
