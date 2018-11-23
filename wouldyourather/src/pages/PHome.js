@@ -44,7 +44,7 @@ class PHome extends Component {
                 state: {
                     redirectUrl
                 }
-            })
+            });
         }
 
         if (

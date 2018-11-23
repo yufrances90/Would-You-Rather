@@ -1,6 +1,36 @@
 import React, { Component } from 'react';
 
+import { connect } from 'react-redux';
+
+import PropTypes from 'prop-types';
+
 class PAdd extends Component {
+
+    static propTypes = {
+        authedUser: PropTypes.string.isRequired,
+        history: PropTypes.object.isRequired
+    }
+
+    state = {
+        redirectUrl: "/add"
+    }
+
+    componentDidMount() {
+
+        const { authedUser, history } = this.props;
+
+        const { redirectUrl } = this.state; 
+
+        if (authedUser === "") {
+            history.push({
+                pathname: "/login",
+                state: {
+                    redirectUrl
+                }
+            });
+        }
+    }
+
     render() {
         return (
             <div>
@@ -10,4 +40,10 @@ class PAdd extends Component {
     }
 }
 
-export default PAdd;
+function mapStateToProps({ authedUser }) {
+    return {
+        authedUser: authedUser.userId
+    }
+}
+
+export default connect(mapStateToProps)(PAdd);
