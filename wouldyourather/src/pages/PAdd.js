@@ -4,6 +4,12 @@ import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
 
+import {
+    Grid
+} from '@material-ui/core';
+
+import AddForm from '../components/AddForm';
+
 class PAdd extends Component {
 
     static propTypes = {
@@ -34,7 +40,15 @@ class PAdd extends Component {
     render() {
         return (
             <div>
-                Hello from PAdd
+                <Grid container> 
+                    <Grid item xs={3}>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <AddForm />
+                    </Grid>
+                    <Grid item xs={3}>
+                    </Grid>
+                </Grid>
             </div>
         );
     }
