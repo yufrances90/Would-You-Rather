@@ -73,14 +73,16 @@ class CNavbar extends Component {
                                             {authedUser}
                                             <Tooltip title="Go to Leaderboard">
                                                 <IconButton color="inherit">
-                                                    <Link to="/leaderboard" style={{color: 'white'}} >
+                                                    <Link to="/leaderboard" style={{color: "white"}} >
                                                         <Dashboard />
                                                     </Link>
                                                 </IconButton>
                                             </Tooltip>
                                             <Tooltip title="Add new poll">
                                                 <IconButton color="inherit">
-                                                    <LibraryAdd />
+                                                    <Link to="/add" style={{color: "white"}}>
+                                                        <LibraryAdd />
+                                                    </Link>
                                                 </IconButton>
                                             </Tooltip>
                                             <Tooltip title="Log Out">
