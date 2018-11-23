@@ -11,7 +11,8 @@ import {
 } from '@material-ui/core';
 import {
     AccountCircle,
-    Dashboard
+    Dashboard,
+    LibraryAdd
 } from '@material-ui/icons';
 
 import { connect } from 'react-redux';
@@ -70,11 +71,16 @@ class CNavbar extends Component {
                                     <span>
                                         <Typography color="inherit" variant="button">
                                             {authedUser}
-                                            <Tooltip title="Leaderboard">
+                                            <Tooltip title="Go to Leaderboard">
                                                 <IconButton color="inherit">
                                                     <Link to="/leaderboard" style={{color: 'white'}} >
                                                         <Dashboard />
                                                     </Link>
+                                                </IconButton>
+                                            </Tooltip>
+                                            <Tooltip title="Add new poll">
+                                                <IconButton color="inherit">
+                                                    <LibraryAdd />
                                                 </IconButton>
                                             </Tooltip>
                                             <Tooltip title="Log Out">
