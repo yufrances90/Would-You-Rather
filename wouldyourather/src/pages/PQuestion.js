@@ -29,32 +29,16 @@ class PQuestion extends Component {
     }
 
     state = {
-        isVoted: false
+        isVoted: false,
+        redirectUrl: this.props.match.params.question_id
     }
 
     componentDidMount() {
 
-        const { 
-            authedUser, 
-            history, 
-            location, 
-            questions 
-        } = this.props;
-
-        if (authedUser === "") {
-
-            const redirectUrl = (!location.state)? "/" : `/questions/${location.state.questionId}`;
-
-            history.push({
-                pathname: "/login",
-                state: {
-                    redirectUrl
-                }
-            })
-        }
+        const { questions, dispatch } = this.props;
 
         if (Object.keys(questions).length === 0) {
-            this.props.dispatch(handleGetAllQuestions());
+            dispatch(handleGetAllQuestions());
         }
     }
 
@@ -77,19 +61,37 @@ class PQuestion extends Component {
 
     render() {
 
-        const { location, questions, users } = this.props;
-
-        if (!location.state) {
-            return <Redirect to="/" />
-        }
+        const { 
+            location, 
+            questions, 
+            users,
+            authedUser,
+            match 
+        } = this.props;
 
         const { 
-            questionId, 
+            isVoted,
+            redirectUrl
+         } = this.state;
+
+        if (authedUser === "") {
+
+            return (
+                <Redirect to={{
+                    pathname: "/login",
+                    state: {
+                        redirectUrl
+                    }
+                }} />
+            );
+        }
+
+        const {  
             questionType, 
             currentUserId 
         } = location.state; /* 0: unanswered, 1: answered */
 
-        const question = questions[questionId];
+        const question = questions[match.params.question_id];
 
         if (!question) {
             return <Redirect to="/notfound" />
@@ -98,8 +100,6 @@ class PQuestion extends Component {
         const author = users[question.author];
 
         const currentUser = users[currentUserId];
-
-        const { isVoted } = this.state;
         
         return (
             <div>
